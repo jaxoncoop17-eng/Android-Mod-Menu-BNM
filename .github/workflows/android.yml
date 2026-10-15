@@ -1,4 +1,4 @@
-name: Build Android NDK (.so)
+name: Cloud NDK Compiler
 
 on:
   push:
@@ -10,15 +10,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Repository
+    - name: Checkout Code
       uses: actions/checkout@v4
 
-    - name: Set up Android NDK
-      uses: nndess/setup-ndk@v1
-      with:
-        ndk-version: r25c
-
-    - name: Build with ndk-build
+    - name: Run Build with Pre-installed NDK
       run: |
         cd app/src/main/jni
-        ndk-build NDK_PROJECT_PATH=.
+        $ANDROID_NDK_LATEST_HOME/ndk-build NDK_PROJECT_PATH=.
